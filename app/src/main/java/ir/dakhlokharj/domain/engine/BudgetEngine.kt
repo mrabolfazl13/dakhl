@@ -68,7 +68,16 @@ object BudgetEngine {
         if (budgets.isEmpty()) return 0
         val total = Money.sum(budgets.map { it.amount }).rial
         if (total <= 0) return 0
-        val spent = Money.sum(budgets.map { progress(it, transactions, today).spent }).rial
+        val counted = transactions.filter { transaction ->
+            transaction.type == TransactionType.EXPENSE &&
+                budgets.any { budget ->
+                    !transaction.date.isBefore(budget.startDate) &&
+                        !transaction.date.isAfter(budget.endDate) &&
+                        (budget.scope == BudgetScope.OVERALL ||
+                            (budget.categoryId != null && transaction.categoryId == budget.categoryId))
+                }
+        }
+        val spent = Money.sum(counted.map { it.amount }).rial
         return ((spent * 100) / total).toInt().coerceIn(0, 999)
     }
 }

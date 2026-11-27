@@ -86,7 +86,7 @@ class BudgetEngineTest {
             BudgetEngine.progress(budget(1000), listOf(expense(250, 2)), JalaliDate(1403, 1, 3)).percent,
         ).isEqualTo(25)
         assertThat(
-            BudgetEngine.progress(budget(100), listOf(expense(500, 2)), JalaliDate(1403, 1, 3)).percent,
+            BudgetEngine.progress(budget(1), listOf(expense(500, 2)), JalaliDate(1403, 1, 3)).percent,
         ).isEqualTo(999)
     }
 
