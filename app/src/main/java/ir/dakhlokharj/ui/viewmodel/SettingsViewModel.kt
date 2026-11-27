@@ -10,6 +10,8 @@ import ir.dakhlokharj.domain.model.CurrencyUnit
 import ir.dakhlokharj.domain.model.ThemeMode
 import ir.dakhlokharj.domain.model.UserSettings
 import ir.dakhlokharj.export.CsvExporter
+import ir.dakhlokharj.export.PdfExporter
+import ir.dakhlokharj.core.date.JalaliDate
 import ir.dakhlokharj.security.PinHasher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -92,6 +94,16 @@ class SettingsViewModel(private val container: AppContainer) : ViewModel() {
         val used = container.database.transactionDao().getAll().any { it.categoryId == category.id }
         require(!used) { "این دسته در تراکنش‌ها استفاده شده و قابل حذف نیست" }
         container.categoryRepository.delete(category)
+    }
+
+    suspend fun exportPdf(uri: Uri, from: JalaliDate, to: JalaliDate): Result<Unit> = withBusy {
+        withContext(Dispatchers.IO) {
+            val transactions = container.transactionRepository.getAll()
+            val categories = container.categoryRepository.getAll()
+            val accounts = container.accountRepository.getAll()
+            PdfExporter.write(container.appContext, uri, transactions, categories, accounts, from, to)
+        }
+        Result.success(Unit)
     }
 
     suspend fun createBackup(uri: Uri, password: String?): Result<BackupMetadata> = withBusy {

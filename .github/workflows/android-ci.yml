@@ -83,6 +83,23 @@ jobs:
             echo "Add SIGNING_STORE_FILE, SIGNING_STORE_PASSWORD, SIGNING_KEY_ALIAS, SIGNING_KEY_PASSWORD to produce publishable artifacts." >> "$GITHUB_STEP_SUMMARY"
           fi
 
+      - name: Verify signatures and manifest
+        run: |
+          set -euo pipefail
+          BUILD_TOOLS="${ANDROID_HOME}/build-tools/35.0.0"
+          echo "### Release APK signature" >> "$GITHUB_STEP_SUMMARY"
+          "${BUILD_TOOLS}/apksigner" verify --verbose --print-certs app/build/outputs/apk/release/app-release.apk | tee -a "$GITHUB_STEP_SUMMARY"
+          echo "### Release AAB signature" >> "$GITHUB_STEP_SUMMARY"
+          jarsigner -verify -verbose -certs app/build/outputs/bundle/release/app-release.aab | tail -n 20 | tee -a "$GITHUB_STEP_SUMMARY"
+          echo "### Manifest" >> "$GITHUB_STEP_SUMMARY"
+          "${BUILD_TOOLS}/aapt" dump badging app/build/outputs/apk/release/app-release.apk | grep -E "^(package|sdkVersion|targetSdkVersion|application-label)" | tee -a "$GITHUB_STEP_SUMMARY"
+          PERMISSIONS="$("${BUILD_TOOLS}/aapt" dump permissions app/build/outputs/apk/release/app-release.apk)"
+          echo "$PERMISSIONS"
+          if echo "$PERMISSIONS" | grep -q "android.permission.INTERNET"; then
+            echo "INTERNET permission is not allowed in this offline app." >&2
+            exit 1
+          fi
+
       - name: Verify artifacts
         run: |
           set -euo pipefail

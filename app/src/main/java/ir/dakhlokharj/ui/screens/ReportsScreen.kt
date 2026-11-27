@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.FileDownload
+import androidx.compose.material.icons.outlined.PictureAsPdf
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -86,6 +87,18 @@ fun ReportsScreen(
         }
     }
 
+    val pdfLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.CreateDocument("application/pdf"),
+    ) { uri ->
+        if (uri != null) {
+            scope.launch {
+                settingsViewModel.exportPdf(uri, from, to)
+                    .onSuccess { exportMessage = "گزارش PDF با موفقیت ذخیره شد." }
+                    .onFailure { exportMessage = it.message ?: "ذخیره فایل ناموفق بود" }
+            }
+        }
+    }
+
     DkScreen(
         title = "گزارش‌ها",
         subtitle = "تحلیل دوره‌ای و خروجی داده",
@@ -95,6 +108,11 @@ fun ReportsScreen(
                 exportLauncher.launch("dakhlo-kharj-${today.year}-${today.month}-${today.day}.csv")
             }) {
                 Icon(Icons.Outlined.FileDownload, contentDescription = "خروجی CSV")
+            }
+            IconButton(onClick = {
+                pdfLauncher.launch("dakhlo-kharj-${today.year}-${today.month}-${today.day}.pdf")
+            }) {
+                Icon(Icons.Outlined.PictureAsPdf, contentDescription = "خروجی PDF")
             }
         },
     ) { padding ->
@@ -299,7 +317,7 @@ fun ReportsScreen(
             item { SectionHeader("تراکنش‌های دوره") }
             item {
                 Text(
-                    "${fa(periodTransactions.size)} تراکنش • خروجی CSV شامل همه تراکنش‌های شماست",
+                    "${fa(periodTransactions.size)} تراکنش • خروجی CSV شامل همه تراکنش‌ها و PDF شامل گزارش همین دوره است",
                     style = MaterialTheme.typography.labelSmall,
                     color = colors.onSurfaceVariant,
                 )
@@ -310,6 +328,14 @@ fun ReportsScreen(
                     icon = Icons.Outlined.FileDownload,
                 ) {
                     exportLauncher.launch("dakhlo-kharj-${today.year}-${today.month}-${today.day}.csv")
+                }
+            }
+            item {
+                SecondaryButton(
+                    if (busy) "در حال آماده‌سازی..." else "گزارش PDF",
+                    icon = Icons.Outlined.PictureAsPdf,
+                ) {
+                    pdfLauncher.launch("dakhlo-kharj-${today.year}-${today.month}-${today.day}.pdf")
                 }
             }
             if (exportMessage != null) {
