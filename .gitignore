@@ -11,3 +11,6 @@ captures/
 *.aab
 keystore.properties
 release.keystore
+/artifacts/
+/test_artifacts/
+ci_failed.log

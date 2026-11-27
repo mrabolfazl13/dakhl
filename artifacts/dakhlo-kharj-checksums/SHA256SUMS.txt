@@ -1,3 +1,0 @@
-c31b91f58449ffadbd863acc9e960424a1f5d6d6dda2a3d07c92341f492bda6c  dist/dakhlo-kharj-debug.apk
-2fc3aa392f64848063a9c0ae74be6e33773b9d5da09d26d29959d0015bab7345  dist/dakhlo-kharj-release.aab
-ad6953ffd903cd63e8e3f8752b9ff83ea5a6200fcd3ba7645ac32f764ba73dc1  dist/dakhlo-kharj-release.apk
