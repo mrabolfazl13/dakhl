@@ -258,3 +258,4 @@ interface FinancialEventDao {
 
     @Delete
     suspend fun delete(event: FinancialEventEntity)
+}
