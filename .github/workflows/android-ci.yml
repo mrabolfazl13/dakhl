@@ -15,7 +15,6 @@ concurrency:
 
 env:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.parallel=true"
-  ANDROID_SDK_ROOT: ${{ env.ANDROID_SDK_ROOT }}
 
 jobs:
   build:
