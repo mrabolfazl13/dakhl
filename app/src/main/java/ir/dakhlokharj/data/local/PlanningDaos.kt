@@ -258,4 +258,7 @@ interface FinancialEventDao {
 
     @Delete
     suspend fun delete(event: FinancialEventEntity)
+
+    @Query("DELETE FROM financial_events")
+    suspend fun clear()
 }

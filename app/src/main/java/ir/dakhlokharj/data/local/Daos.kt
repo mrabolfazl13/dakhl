@@ -181,3 +181,21 @@ interface EnvelopeDao {
     @Query("DELETE FROM envelopes")
     suspend fun clear()
 }
+
+@Dao
+interface BackupMetadataDao {
+    @Query("SELECT * FROM backup_metadata ORDER BY createdAt DESC, id DESC")
+    fun observeAll(): Flow<List<BackupMetadataEntity>>
+
+    @Query("SELECT * FROM backup_metadata ORDER BY createdAt DESC, id DESC")
+    suspend fun getAll(): List<BackupMetadataEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(metadata: BackupMetadataEntity): Long
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(metadata: List<BackupMetadataEntity>)
+
+    @Query("DELETE FROM backup_metadata")
+    suspend fun clear()
+}
