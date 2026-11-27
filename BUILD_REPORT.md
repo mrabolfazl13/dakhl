@@ -43,16 +43,16 @@ Workflow: `.github/workflows/android-ci.yml` — نام: Android CI
 | --- | --- | --- | --- |
 | `dakhlo-kharj-debug-apk` | `dist/dakhlo-kharj-debug.apk` | ۲۰٬۸۷۲٬۵۳۸ بایت | APK دیباگ |
 | `dakhlo-kharj-release-apk` | `dist/dakhlo-kharj-release.apk` | ۱۳٬۹۲۷٬۲۹۷ بایت | APK ریلیز |
-| `dakhlo-kharj-release-aab` | `dist/dakhlo-kharj-release.aab` | ۱۳٬۸۳۳٬۱۳۸ بایت | AAB ریلیز |
+| `dakhlo-kharj-release-aab` | `dist/dakhlo-kharj-release.aab` | ۱۳٬۸۳۳٬۱۳۳ بایت | AAB ریلیز |
 | `dakhlo-kharj-checksums` | `dist/SHA256SUMS.txt` | — | checksum |
 | `test-reports` | گزارش تست و lint | — | ۹۷ تست موفق، lint با ۰ خطا |
 
 ### SHA-256
 
 ```text
-25b4c10bce618d4847e5f18128d4e263bed6a1a3b0d5266f74f73dc8a894b53e  dakhlo-kharj-debug.apk
-07ccba9f023ea9b415204270aa7101a13b85bb95ae7d11eb64db576d9cd4b68b  dakhlo-kharj-release.apk
-bf1d83176aa6c63ea333175699364fd94d2206ca9825fbab7f10d5e6880a1af6  dakhlo-kharj-release.aab
+d8338003bcb69a8625996bca2fa01a2d14637912ac56c1fd74d5f710b40e662a  dakhlo-kharj-debug.apk
+bb44a9a893880d4a36aff4d57e3e4a25874b157417a82577ba047e00a49fbfce  dakhlo-kharj-release.apk
+7f08e66569ddb348d6ddedcd2401ebf854d7c70237369bd0688348a94893adf7  dakhlo-kharj-release.aab
 ```
 
 این مقادیر با `Get-FileHash` روی فایل‌های دانلودشده بازمحاسبه شدند و با `SHA256SUMS.txt` اجرا یکسان‌اند.
@@ -88,16 +88,16 @@ targetSdkVersion:'35'
 
 | مورد | مقدار |
 | --- | --- |
-| Run ID | 45924529016 |
+| Run ID | 45925225154 |
 | شاخه | master |
-| Commit | 60093e36513025d305b117af7159a214880aff22 |
-| نتیجه | موفق (۳ دقیقه و ۴۰ ثانیه) |
+| Commit | c00575b264a5a8febd9334714e94005292a041be |
+| نتیجه | موفق (۵ دقیقه و ۴۷ ثانیه) |
 | تاریخ | ۲۰۲۶-۱۱-۲۷ |
 
 ## نحوه دریافت آرتیفکت‌ها
 
 ```bash
-gh run download 45924529016 -D artifacts
+gh run download 45925225154 -D artifacts
 ```
 
 checksumها را با فایل دانلودشده مقایسه کنید:
