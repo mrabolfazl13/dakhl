@@ -486,14 +486,3 @@ fun TextPromptDialog(
         },
     )
 }
-
-@Composable
-fun SelectionRow(
-    label: String,
-    selected: Boolean,
-    onClick: () -> Unit,
-    description: String? = null,
-) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()

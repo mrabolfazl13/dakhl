@@ -130,10 +130,10 @@ interface InstallmentPlanDao {
 
 @Dao
 interface InstallmentDao {
-    @Query("SELECT * FROM installments ORDER BY dueEpochDay ASC, index ASC")
+    @Query("SELECT * FROM installments ORDER BY dueEpochDay ASC, \"index\" ASC")
     fun observeAll(): Flow<List<InstallmentEntity>>
 
-    @Query("SELECT * FROM installments WHERE planId = :planId ORDER BY index ASC")
+    @Query("SELECT * FROM installments WHERE planId = :planId ORDER BY \"index\" ASC")
     fun observeForPlan(planId: Long): Flow<List<InstallmentEntity>>
 
     @Query("SELECT * FROM installments WHERE id = :id")
@@ -258,25 +258,3 @@ interface FinancialEventDao {
 
     @Delete
     suspend fun delete(event: FinancialEventEntity)
-
-    @Query("DELETE FROM financial_events")
-    suspend fun clear()
-}
-
-@Dao
-interface BackupMetadataDao {
-    @Query("SELECT * FROM backup_metadata ORDER BY createdAt DESC")
-    fun observeAll(): Flow<List<BackupMetadataEntity>>
-
-    @Query("SELECT * FROM backup_metadata")
-    suspend fun getAll(): List<BackupMetadataEntity>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(metadata: BackupMetadataEntity): Long
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(items: List<BackupMetadataEntity>)
-
-    @Query("DELETE FROM backup_metadata")
-    suspend fun clear()
-}
