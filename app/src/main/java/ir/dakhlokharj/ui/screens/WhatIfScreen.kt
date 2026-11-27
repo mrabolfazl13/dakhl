@@ -160,7 +160,7 @@ fun WhatIfScreen(viewModel: OverviewViewModel, onBack: () -> Unit) {
                                 Pill(
                                     budgetStatusLabel(impact.afterStatus),
                                     when (impact.afterStatus) {
-                                        ir.dakhlokharj.domain.model.BudgetStatus.HEALTHY -> ir.dakhlokharj.domain.model.InsightTone.POSITIVE
+                                        ir.dakhlokharj.domain.model.BudgetStatus.SAFE -> ir.dakhlokharj.domain.model.InsightTone.POSITIVE
                                         ir.dakhlokharj.domain.model.BudgetStatus.WARNING -> ir.dakhlokharj.domain.model.InsightTone.NEUTRAL
                                         else -> ir.dakhlokharj.domain.model.InsightTone.NEGATIVE
                                     },

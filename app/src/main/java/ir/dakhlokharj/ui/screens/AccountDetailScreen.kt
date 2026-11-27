@@ -23,6 +23,7 @@ import ir.dakhlokharj.core.date.JalaliDate
 import ir.dakhlokharj.core.money.Money
 import ir.dakhlokharj.domain.model.Account
 import ir.dakhlokharj.domain.model.AccountType
+import ir.dakhlokharj.domain.model.Transaction
 import ir.dakhlokharj.ui.accountTypeLabel
 import ir.dakhlokharj.ui.components.*
 import ir.dakhlokharj.ui.theme.*
@@ -66,7 +67,7 @@ fun AccountDetailScreen(
 
     val accountTransactions = transactions
         .filter { it.accountId == accountId || it.targetAccountId == accountId }
-        .sortedWith(compareByDescending { it.date }.thenByDescending { it.createdAt })
+        .sortedWith(compareByDescending<Transaction> { it.date }.thenByDescending { it.createdAt })
     val categoryMap = categories.associateBy { it.id }
 
     DkScreen(

@@ -173,9 +173,8 @@ fun AccountsScreen(
                                     AccountType.BANK -> "bank"
                                     AccountType.CASH -> "wallet"
                                     AccountType.SAVINGS -> "savings"
-                                    AccountType.INVESTMENT -> "profit"
-                                    AccountType.CREDIT_CARD -> "card"
                                     AccountType.DIGITAL_WALLET -> "phone"
+                                    AccountType.CUSTOM -> "wallet"
                                 },
                             ),
                             editing = false,

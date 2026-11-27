@@ -71,7 +71,10 @@ object CalendarEngine {
                 TransactionType.INCOME -> CalendarEventKind.INCOME
                 TransactionType.EXPENSE -> CalendarEventKind.EXPENSE
                 TransactionType.TRANSFER -> CalendarEventKind.TRANSFER
-                TransactionType.ADJUSTMENT -> null
+                TransactionType.ADJUSTMENT,
+                TransactionType.SAVINGS_DEPOSIT,
+                TransactionType.SAVINGS_WITHDRAW,
+                -> null
             }
             if (kind != null) {
                 add(transaction.date, CalendarEvent(transaction.title, transaction.amount, kind, paid = true, referenceId = transaction.id))

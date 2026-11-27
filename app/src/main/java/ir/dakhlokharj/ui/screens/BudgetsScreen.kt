@@ -212,7 +212,7 @@ fun BudgetsScreen(
             Text("دوره", style = MaterialTheme.typography.labelMedium)
             Spacer(Modifier.height(8.dp))
             LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                items(listOf(BudgetPeriod.MONTHLY, BudgetPeriod.WEEKLY, BudgetPeriod.YEARLY)) { entry ->
+                items(listOf(BudgetPeriod.MONTHLY, BudgetPeriod.WEEKLY)) { entry ->
                     DkChoiceChip(budgetPeriodLabel(entry), period == entry) { period = entry }
                 }
             }
@@ -231,12 +231,10 @@ fun BudgetsScreen(
                 else {
                     val start = when (period) {
                         BudgetPeriod.WEEKLY -> today
-                        BudgetPeriod.YEARLY -> today.startOfYear
                         else -> today.startOfMonth
                     }
                     val end = when (period) {
                         BudgetPeriod.WEEKLY -> start.plusDays(6)
-                        BudgetPeriod.YEARLY -> today.endOfYear
                         else -> today.endOfMonth
                     }
                     scope.launch {

@@ -112,6 +112,7 @@ class SettingsViewModel(private val container: AppContainer) : ViewModel() {
             val to = dates.maxOrNull() ?: ir.dakhlokharj.core.date.JalaliDate.today()
             CsvExporter.write(container.appContext, uri, transactions, categories, accounts, from, to)
         }
+        Result.success(Unit)
     }
 
     private suspend fun <T> withBusy(block: suspend () -> Result<T>): Result<T> {

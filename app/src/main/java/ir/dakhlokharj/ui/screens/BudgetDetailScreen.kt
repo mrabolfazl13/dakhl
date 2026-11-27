@@ -85,7 +85,7 @@ fun BudgetDetailScreen(
                     Pill(
                         "${faPercent(progress.percent)} • ${ir.dakhlokharj.ui.budgetStatusLabel(progress.status)}",
                         tone = when (progress.status) {
-                            ir.dakhlokharj.domain.model.BudgetStatus.HEALTHY -> ir.dakhlokharj.domain.model.InsightTone.POSITIVE
+                            ir.dakhlokharj.domain.model.BudgetStatus.SAFE -> ir.dakhlokharj.domain.model.InsightTone.POSITIVE
                             ir.dakhlokharj.domain.model.BudgetStatus.WARNING -> ir.dakhlokharj.domain.model.InsightTone.NEUTRAL
                             else -> ir.dakhlokharj.domain.model.InsightTone.NEGATIVE
                         },

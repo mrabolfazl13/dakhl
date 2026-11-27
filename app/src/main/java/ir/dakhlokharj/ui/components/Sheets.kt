@@ -137,7 +137,7 @@ fun AmountInputSheet(
                         contentAlignment = Alignment.Center,
                     ) {
                         Text(
-                            text = if (key == "⌫") "⌫" else ThemePersianText.toPersianDigits(key),
+                            text = if (key == "⌫") "⌫" else PersianText.toPersianDigits(key),
                             style = MaterialTheme.typography.headlineSmall,
                         )
                     }
@@ -381,8 +381,8 @@ fun PickerRow(
 fun DkChoiceChip(
     label: String,
     selected: Boolean,
-    onClick: () -> Unit,
     color: Color = MaterialTheme.colorScheme.primary,
+    onClick: () -> Unit,
 ) {
     Row(
         modifier = Modifier

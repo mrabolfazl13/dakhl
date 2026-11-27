@@ -21,7 +21,9 @@ import ir.dakhlokharj.core.date.JalaliDate
 import ir.dakhlokharj.core.money.Money
 import ir.dakhlokharj.domain.model.SavingsGoal
 import ir.dakhlokharj.ui.components.*
+import ir.dakhlokharj.ui.theme.DateStyle
 import ir.dakhlokharj.ui.theme.fa
+import ir.dakhlokharj.ui.theme.DateStyle
 import ir.dakhlokharj.ui.theme.faDate
 import ir.dakhlokharj.ui.theme.moneyShort
 import ir.dakhlokharj.ui.theme.moneyText

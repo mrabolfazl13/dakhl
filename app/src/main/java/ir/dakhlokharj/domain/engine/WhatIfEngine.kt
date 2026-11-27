@@ -109,7 +109,7 @@ object WhatIfEngine {
             projectedEndAfterPurchase = projectedAfter,
             freeToSpendAfterPurchase = freeAfter,
             freeToSpendChange = freeChange,
-            totalCommitment = if (scenario.cash) scenario.price else downPayment + monthly * count,
+            totalCommitment = if (scenario.cash) scenario.price else downPayment + monthly * count.toLong(),
             budgetImpacts = impacts,
             savingsMonthsDelayed = monthsDelayed,
             projections = projections,

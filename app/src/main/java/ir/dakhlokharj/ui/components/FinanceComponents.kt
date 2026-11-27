@@ -212,9 +212,11 @@ fun BudgetProgressCard(progress: BudgetProgress, modifier: Modifier = Modifier, 
             Pill(
                 text = "${faPercent(progress.percent)} • ${budgetStatusLabel(progress.status)}",
                 tone = when (progress.status) {
-                    BudgetStatus.HEALTHY -> ir.dakhlokharj.domain.model.InsightTone.POSITIVE
+                    BudgetStatus.SAFE -> ir.dakhlokharj.domain.model.InsightTone.POSITIVE
                     BudgetStatus.WARNING -> ir.dakhlokharj.domain.model.InsightTone.NEUTRAL
-                    BudgetStatus.CRITICAL -> ir.dakhlokharj.domain.model.InsightTone.NEGATIVE
+                    BudgetStatus.DANGER,
+                    BudgetStatus.EXCEEDED,
+                    -> ir.dakhlokharj.domain.model.InsightTone.NEGATIVE
                 },
             )
         }
@@ -239,9 +241,11 @@ fun BudgetProgressCard(progress: BudgetProgress, modifier: Modifier = Modifier, 
 
 @Composable
 fun budgetStatusColor(status: BudgetStatus): Color = when (status) {
-    BudgetStatus.HEALTHY -> MaterialTheme.colorScheme.primary
+    BudgetStatus.SAFE -> MaterialTheme.colorScheme.primary
     BudgetStatus.WARNING -> MaterialTheme.colorScheme.secondary
-    BudgetStatus.CRITICAL -> MaterialTheme.colorScheme.error
+    BudgetStatus.DANGER,
+    BudgetStatus.EXCEEDED,
+    -> MaterialTheme.colorScheme.error
 }
 
 @Composable

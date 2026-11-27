@@ -223,10 +223,11 @@ fun SavingsDetailScreen(
             Spacer(Modifier.height(12.dp))
             PrimaryButton(if (isDeposit) "ثبت واریز" else "ثبت برداشت", enabled = amountToman > 0) {
                 scope.launch {
+                    val activeGoal = goal ?: return@launch
                     val action = if (isDeposit) {
-                        viewModel.contribute(goal.id, amountToman, date, accountId)
+                        viewModel.contribute(activeGoal.id, amountToman, date, accountId)
                     } else {
-                        viewModel.withdraw(goal.id, amountToman, date, accountId)
+                        viewModel.withdraw(activeGoal.id, amountToman, date, accountId)
                     }
                     action.onSuccess {
                         showDeposit = false

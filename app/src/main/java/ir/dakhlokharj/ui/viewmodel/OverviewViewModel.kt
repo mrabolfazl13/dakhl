@@ -218,12 +218,14 @@ class OverviewViewModel(private val container: AppContainer) : ViewModel() {
         val expenseSlices = ReportEngine.categoryTotals(
             transactions = base.transactions.filter { it.type == TransactionType.EXPENSE },
             categories = base.categories,
+            kind = ir.dakhlokharj.domain.model.CategoryKind.EXPENSE,
             from = monthStart,
             to = today,
         )
         val incomeSlices = ReportEngine.categoryTotals(
             transactions = base.transactions.filter { it.type == TransactionType.INCOME },
             categories = base.categories,
+            kind = ir.dakhlokharj.domain.model.CategoryKind.INCOME,
             from = monthStart,
             to = today,
         )

@@ -222,12 +222,13 @@ fun HealthRing(score: Int, modifier: Modifier = Modifier, size: Int = 132) {
         score >= 50 -> MaterialTheme.colorScheme.secondary
         else -> MaterialTheme.colorScheme.error
     }
+    val trackColor = MaterialTheme.colorScheme.surfaceVariant
     Box(modifier = modifier.size(size.dp), contentAlignment = Alignment.Center) {
         Canvas(modifier = Modifier.fillMaxSize()) {
             val stroke = 12.dp.toPx()
             val inset = stroke / 2 + 2.dp.toPx()
             drawArc(
-                color = MaterialTheme.colorScheme.surfaceVariant,
+                color = trackColor,
                 startAngle = -90f,
                 sweepAngle = 360f,
                 useCenter = false,

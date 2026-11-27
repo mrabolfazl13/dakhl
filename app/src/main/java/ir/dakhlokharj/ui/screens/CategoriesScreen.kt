@@ -168,7 +168,7 @@ fun CategoriesScreen(viewModel: SettingsViewModel, onBack: () -> Unit) {
                         modifier = Modifier
                             .size(40.dp)
                             .clip(RoundedCornerShape(12.dp))
-                            .background(if (selected) color.copy(alpha = 0.2f) else colors.surfaceVariant)
+                            .background(if (selected) Color(color).copy(alpha = 0.2f) else colors.surfaceVariant)
                             .clickable { iconKey = key },
                         contentAlignment = Alignment.Center,
                     ) {

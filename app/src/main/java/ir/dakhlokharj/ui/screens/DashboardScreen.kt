@@ -349,7 +349,7 @@ private fun SystemBadge() {
 }
 
 @Composable
-private fun QuickAction(
+private fun androidx.compose.foundation.layout.RowScope.QuickAction(
     label: String,
     icon: androidx.compose.ui.graphics.vector.ImageVector,
     color: Color,

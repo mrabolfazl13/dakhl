@@ -87,12 +87,12 @@ object AlertEngine {
                 title = "تمدید ${item.title}",
                 message = "این هزینه در ${item.nextDueDate.formatPersianDigits()} سررسید می‌شود.",
                 tone = InsightTone.NEUTRAL,
-                iconKey = item.iconKey,
+                iconKey = "recurring",
                 priority = 60,
             )
         }
 
-        val thisMonthStart = today.startOfMonth()
+        val thisMonthStart = today.startOfMonth
         val lastMonthStart = thisMonthStart.plusMonths(-1)
         val lastMonthEnd = thisMonthStart.plusDays(-1)
         val thisExpense = sumExpenses(transactions, thisMonthStart, today)
@@ -121,6 +121,7 @@ object AlertEngine {
         val topCategory = ReportEngine.categoryTotals(
             transactions = transactions.filter { it.type == TransactionType.EXPENSE },
             categories = categories,
+            kind = ir.dakhlokharj.domain.model.CategoryKind.EXPENSE,
             from = thisMonthStart,
             to = today,
         ).firstOrNull()

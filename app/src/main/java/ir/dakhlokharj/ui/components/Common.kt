@@ -268,10 +268,12 @@ fun SecondaryButton(
     text: String,
     modifier: Modifier = Modifier,
     icon: ImageVector? = null,
+    enabled: Boolean = true,
     onClick: () -> Unit,
 ) {
     OutlinedButton(
         onClick = onClick,
+        enabled = enabled,
         modifier = modifier
             .fillMaxWidth()
             .height(50.dp),

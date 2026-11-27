@@ -45,12 +45,12 @@ object CsvExporter {
         val expense = Money.sum(transactions.filter { it.type == TransactionType.EXPENSE }.map { it.amount })
         val builder = StringBuilder()
         builder.appendLine(csv("گزارش دخل و خرج"))
-        builder.appendLine(csv("از تاریخ", from.formatFull()))
-        builder.appendLine(csv("تا تاریخ", to.formatFull()))
-        builder.appendLine(csv("مجموع درآمد (تومان)", from.rial(income)))
-        builder.appendLine(csv("مجموع هزینه (تومان)", from.rial(expense)))
-        builder.appendLine(csv("مانده دوره (تومان)", from.rial(income - expense)))
-        builder.appendLine(csv("تعداد تراکنش", PersianText.toPersianDigits(transactions.size.toString())))
+        builder.appendLine(row("از تاریخ", from.formatFull()))
+        builder.appendLine(row("تا تاریخ", to.formatFull()))
+        builder.appendLine(row("مجموع درآمد (تومان)", from.rial(income)))
+        builder.appendLine(row("مجموع هزینه (تومان)", from.rial(expense)))
+        builder.appendLine(row("مانده دوره (تومان)", from.rial(income - expense)))
+        builder.appendLine(row("تعداد تراکنش", PersianText.toPersianDigits(transactions.size.toString())))
         builder.appendLine()
         builder.appendLine(
             listOf("تاریخ", "نوع", "عنوان", "دسته‌بندی", "حساب", "مبلغ (تومان)", "یادداشت", "برچسب")
@@ -74,6 +74,8 @@ object CsvExporter {
     }
 
     private fun JalaliDate.rial(money: Money): String = money.toTomanRounded().toString()
+
+    private fun row(vararg values: String): String = values.joinToString(",") { csv(it) }
 
     private fun csv(value: String): String {
         val escaped = value.replace("\"", "\"\"")

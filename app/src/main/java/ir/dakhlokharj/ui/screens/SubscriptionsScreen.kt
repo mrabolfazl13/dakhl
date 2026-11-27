@@ -69,11 +69,9 @@ fun SubscriptionsScreen(
     val monthlyBurden = Money.sum(
         active.map {
             when (it.period) {
-                RecurringPeriod.DAILY -> Money(it.amount.rial * 30)
                 RecurringPeriod.WEEKLY -> Money(it.amount.rial * 4)
-                RecurringPeriod.QUARTERLY -> Money(it.amount.rial / 3)
+                RecurringPeriod.MONTHLY -> it.amount
                 RecurringPeriod.YEARLY -> Money(it.amount.rial / 12)
-                else -> it.amount
             }
         },
     )
@@ -210,7 +208,7 @@ fun SubscriptionsScreen(
     }
 
     if (showForm) {
-        val options = listOf(RecurringKind.SUBSCRIPTION, RecurringKind.BILL, RecurringKind.INSTALLMENT, RecurringKind.OTHER)
+        val options = listOf(RecurringKind.SUBSCRIPTION, RecurringKind.BILL)
         DkBottomSheet(onDismiss = { showForm = false }) {
             SheetTitle(if (editing == null) "مورد جدید" else "ویرایش مورد", "قبض، اشتراک یا هزینه تکرارشونده")
             DkTextField(title, { title = it }, label = "عنوان", placeholder = "مثلاً اشتراک اینترنت")

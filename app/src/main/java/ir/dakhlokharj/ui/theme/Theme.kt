@@ -69,8 +69,6 @@ private val LightScheme = lightColorScheme(
     error = androidx.compose.ui.graphics.Color(0xFFB91C1C),
 )
 
-private val OnDark = androidx.compose.ui.graphics.Color(0xFFF8FAFC)
-
 private val DkShapes = Shapes(
     extraSmall = RoundedCornerShape(8.dp),
     small = RoundedCornerShape(12.dp),
