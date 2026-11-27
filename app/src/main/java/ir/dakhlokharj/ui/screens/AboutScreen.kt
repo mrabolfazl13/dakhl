@@ -104,7 +104,7 @@ fun AboutScreen(onBack: () -> Unit) {
                         "• امتیاز سلامت مالی با توضیح شفاف\n" +
                         "• اقساط، بدهی، طلب، اشتراک و پس‌انداز\n" +
                         "• تقویم مالی و گزارش‌های دوره‌ای\n" +
-                        "• خروجی CSV و پشتیبان کامل",
+                        "• خروجی CSV و PDF و پشتیبان کامل",
                     style = MaterialTheme.typography.bodySmall,
                     color = colors.onSurfaceVariant,
                 )

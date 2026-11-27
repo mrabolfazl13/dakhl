@@ -11,6 +11,7 @@ data/        Room، DAOها، مخازن و Seed
 backup/      رمزنگاری و پشتیبان‌گیری
 security/    هش رمز
 notifications/ WorkManager و کانال‌ها
+export/      CSV و PDF گزارش‌ها با SAF
 di/          AppContainer (DI دستی)
 ui/          Compose: theme، components، screens، navigation، viewmodels
 ```
@@ -46,6 +47,12 @@ RecurringExpense، SavingsGoal، FinancialEvent، UserSettings، BackupMetadata.
 - `DkDatabase` نسخه ۱
 - `Converters` برای `JalaliDate` (ذخیره به‌صورت epochDay) و `Money` (ذخیره ریال)
 - مخازن: Account، Category، Transaction، Budget، Debt، Installment، Recurring، Savings، Event، Settings
+
+### export
+- `CsvExporter` — CSV با BOM برای Excel، شامل همه تراکنش‌ها.
+- `PdfExporter` — PDF چندصفحه‌ای A4 با `PdfDocument`، `StaticLayout` راست‌به‌چپ و فونت Vazirmatn؛
+  خلاصه دوره، تفکیک دسته و همه تراکنش‌های بازه.
+- نوشتن روی URI انتخابی کاربر با `ContentResolver` انجام می‌شود؛ مجوز ذخیره‌سازی درخواست نمی‌شود.
 
 ### ui
 - `theme/` — رنگ، تایپوگرافی Vazirmatn، فرمترها، آیکون‌ها

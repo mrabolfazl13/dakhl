@@ -33,43 +33,80 @@ Workflow: `.github/workflows/android-ci.yml` — نام: Android CI
 8. `gradle assembleDebug`
 9. `gradle assembleRelease`
 10. `gradle bundleRelease`
-11. کپی خروجی‌ها به `dist/` و تولید `SHA256SUMS.txt`
-12. آپلود آرتیفکت‌ها
+11. بررسی امضای APK و AAB با `apksigner`/`jarsigner`، چاپ manifest و رد کردن مجوز INTERNET
+12. کپی خروجی‌ها به `dist/` و تولید `SHA256SUMS.txt`
+13. آپلود آرتیفکت‌ها
 
 ## آرتیفکت‌ها
 
-| نام | مسیر داخلی | توضیح |
-| --- | --- | --- |
-| `dakhlo-kharj-debug-apk` | `dist/dakhlo-kharj-debug.apk` | APK دیباگ |
-| `dakhlo-kharj-release-apk` | `dist/dakhlo-kharj-release.apk` | APK ریلیز |
-| `dakhlo-kharj-release-aab` | `dist/dakhlo-kharj-release.aab` | AAB ریلیز |
-| `dakhlo-kharj-checksums` | `dist/SHA256SUMS.txt` | checksum |
-| `test-reports` | گزارش تست و lint | در صورت وجود |
+| نام | مسیر داخلی | حجم | توضیح |
+| --- | --- | --- | --- |
+| `dakhlo-kharj-debug-apk` | `dist/dakhlo-kharj-debug.apk` | ۲۰٬۸۷۲٬۵۳۸ بایت | APK دیباگ |
+| `dakhlo-kharj-release-apk` | `dist/dakhlo-kharj-release.apk` | ۱۳٬۹۲۷٬۲۹۷ بایت | APK ریلیز |
+| `dakhlo-kharj-release-aab` | `dist/dakhlo-kharj-release.aab` | ۱۳٬۸۳۳٬۱۳۸ بایت | AAB ریلیز |
+| `dakhlo-kharj-checksums` | `dist/SHA256SUMS.txt` | — | checksum |
+| `test-reports` | گزارش تست و lint | — | ۹۷ تست موفق، lint با ۰ خطا |
+
+### SHA-256
+
+```text
+25b4c10bce618d4847e5f18128d4e263bed6a1a3b0d5266f74f73dc8a894b53e  dakhlo-kharj-debug.apk
+07ccba9f023ea9b415204270aa7101a13b85bb95ae7d11eb64db576d9cd4b68b  dakhlo-kharj-release.apk
+bf1d83176aa6c63ea333175699364fd94d2206ca9825fbab7f10d5e6880a1af6  dakhlo-kharj-release.aab
+```
+
+این مقادیر با `Get-FileHash` روی فایل‌های دانلودشده بازمحاسبه شدند و با `SHA256SUMS.txt` اجرا یکسان‌اند.
 
 ## امضا
 
-- اگر Secretsهای `SIGNING_STORE_FILE`، `SIGNING_STORE_PASSWORD`، `SIGNING_KEY_ALIAS` و
-  `SIGNING_KEY_PASSWORD` تنظیم شوند، ریلیز با کلید اختصاصی امضا می‌شود.
-- در غیر این صورت ریلیز با کلید دیباگ امضا می‌شود (برای نصب آزمایشی و انتشار داخلی مناسب است،
-  برای Google Play باید کلید اختصاصی تنظیم شود).
+- Secretsهای `SIGNING_STORE_FILE`، `SIGNING_STORE_PASSWORD`، `SIGNING_KEY_ALIAS` و
+  `SIGNING_KEY_PASSWORD` در این مخزن تنظیم نشده‌اند؛ بنابراین خروجی‌های ریلیز با کلید دیباگ امضا می‌شوند.
+- APK ریلیز با APK Signature Scheme v2 تأیید شد:
+  `Signer #1 certificate DN: C=US, O=Android, CN=Android Debug`.
+- AAB ریلیز با `jarsigner -verify` به‌عنوان jar امضاشده تأیید شد.
+- برای انتشار در Google Play باید کلید ریلیز اختصاصی در Secrets قرار گیرد و `versionCode` افزایش یابد.
+
+## وضعیت manifest
+
+```text
+package: name='ir.dakhlokharj' versionCode='1' versionName='1.0.0'
+sdkVersion:'26'
+targetSdkVersion:'35'
+```
+
+مجوز `android.permission.INTERNET` وجود ندارد؛ فقط
+`POST_NOTIFICATIONS`، `USE_BIOMETRIC`، `VIBRATE` و `RECEIVE_BOOT_COMPLETED` درخواست می‌شوند.
+
+## کیفیت کد
+
+- تست واحد: ۹۷ تست، ۰ شکست، ۰ رد‌شده.
+- lint: ۰ خطا و ۲۰ هشدار (عمدتاً وابستگی‌های قدیمی‌تر و targetSdk 35 در برابر ۳۶). این هشدارها
+  برای پایداری نسخه ۱.۰.۰ عمداً بدون ارتقای ناگهانی وابستگی‌ها باقی مانده‌اند.
+- Room schema در `app/schemas` نگهداری می‌شود.
 
 ## آخرین وضعیت
 
 | مورد | مقدار |
 | --- | --- |
-| Run ID | 45921933460 (دستی، در حال اصلاح) |
+| Run ID | 45924529016 |
 | شاخه | master |
-| نتیجه | در حال تکمیل — پس از اجرای سبز به‌روزرسانی می‌شود |
+| Commit | 60093e36513025d305b117af7159a214880aff22 |
+| نتیجه | موفق (۳ دقیقه و ۴۰ ثانیه) |
+| تاریخ | ۲۰۲۶-۱۱-۲۷ |
 
 ## نحوه دریافت آرتیفکت‌ها
 
 ```bash
-gh run download <RUN_ID> -D artifacts
+gh run download 45924529016 -D artifacts
 ```
 
-سپس checksumها را بررسی کنید:
+checksumها را با فایل دانلودشده مقایسه کنید:
 
-```bash
-cd artifacts/dakhlo-kharj-checksums
-sha256sum -c SHA256SUMS.txt
+```powershell
+Get-ChildItem artifacts -Recurse -Include *.apk,*.aab |
+  ForEach-Object { (Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLower() + "  " + $_.Name }
 ```
+
+## یادداشت
+
+آرتیفکت‌های CI در مخزن commit نمی‌شوند (`/artifacts/` در `.gitignore`). منبع حقیقت، اجرای Actions است.

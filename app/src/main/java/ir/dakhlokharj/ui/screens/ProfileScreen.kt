@@ -99,7 +99,7 @@ fun ProfileScreen(
             DkCard(contentPadding = PaddingValues(6.dp)) {
                 ProfileMenuRow("تنظیمات", "قفل، یادآوری و داده‌ها", Icons.Outlined.Settings) { onNavigate("settings") }
                 DkTopDivider()
-                ProfileMenuRow("گزارش‌ها", "تحلیل دوره‌ای و خروجی CSV", Icons.Outlined.BarChart) { onNavigate("reports") }
+                ProfileMenuRow("گزارش‌ها", "تحلیل دوره‌ای و خروجی CSV/PDF", Icons.Outlined.BarChart) { onNavigate("reports") }
                 DkTopDivider()
                 ProfileMenuRow("سلامت مالی", "امتیاز و پیشنهادهای شفاف", Icons.Outlined.Favorite) { onNavigate("health") }
                 DkTopDivider()
