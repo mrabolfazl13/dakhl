@@ -75,7 +75,7 @@
 ## وضعیت بیلد
 
 بیلد فقط در GitHub Actions انجام می‌شود (`.github/workflows/android-ci.yml`).
-آرتیفکت‌ها: APK دیباگ، APK ریلیز، AAB ریلیز و SHA256SUMS. اجرای مرجع v1.1.0: **46112428216**
+آرتیفکت‌ها: APK دیباگ، APK ریلیز، AAB ریلیز و SHA256SUMS. اجرای مرجع v1.1.0: **46113088195**
 (۹۷ تست، ۰ خطا)؛ جزئیات و checksum‌ها در `BUILD_REPORT.md`.
 
 جزئیات آخرین اجرا در `BUILD_REPORT.md` ثبت می‌شود.

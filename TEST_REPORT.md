@@ -111,7 +111,7 @@ gradle testDebugUnitTest --no-daemon --stacktrace
 
 | مورد | مقدار |
 | --- | --- |
-| Run ID | 46112428216 |
+| Run ID | 46113088195 |
 | نتیجه | موفق |
 | تست اجراشده | ۹۷ |
 | شکست | ۰ |

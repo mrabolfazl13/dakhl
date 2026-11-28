@@ -50,13 +50,13 @@ Workflow: `.github/workflows/android-ci.yml` — نام: Android CI
 ### SHA-256
 
 ```text
-b3361a196f25812dc0b1e3f9efa22d318b637d07ef14ae60ffea345d9f335c6a  dakhlo-kharj-debug.apk
-e2bb026f22c28009984aacf50c70cc24b93c0bc12fb05e23725caac325ce9e20  dakhlo-kharj-release.apk
-30474b3ec544b906dc633709692a82d6bac87167c5f73a9e8b6af24e3da91bbe  dakhlo-kharj-release.aab
+eb86277f180ef57e52191d329791c5a439524112bc476350e7c93e52064b2318  dakhlo-kharj-debug.apk
+993df2aee21a935e06bdcb0ec69d201bcdc655b0b254438fbf2f9ae9fc584762  dakhlo-kharj-release.apk
+9f27dfd6675c977bbcbe67d03af7127d127d749dda6263f73816feb1e0ab24fd  dakhlo-kharj-release.aab
 ```
 
 این مقادیر با `Get-FileHash` روی فایل‌های دانلودشده بازمحاسبه شدند و با `SHA256SUMS.txt` اجرای
-`46112428216` یکسان‌اند. این checksum‌ها به همان اجرا وابسته‌اند؛ چون امضای APK زمان‌دار است،
+`46113088195` یکسان‌اند. این checksum‌ها به همان اجرا وابسته‌اند؛ چون امضای APK زمان‌دار است،
 اجراهای بعدی حتی با کد یکسان checksum متفاوتی تولید می‌کنند. برای بازتولید همین فایل‌ها از همان
 Run ID استفاده کنید.
 
@@ -93,16 +93,16 @@ targetSdkVersion:'35'
 
 | مورد | مقدار |
 | --- | --- |
-| Run ID | 46112428216 (مرجع آرتیفکت‌های این گزارش) |
+| Run ID | 46113088195 (مرجع آرتیفکت‌های این گزارش) |
 | شاخه | master |
-| Commit | 732f34e3a54b733219e67fb5f52250e1fc6f0c6e |
-| نتیجه | موفق (۴ دقیقه و ۲۹ ثانیه) |
+| Commit | 560e623ba93ec60ddd36fd3f3da4fa06af3cb4ca |
+| نتیجه | موفق (۶ دقیقه و ۴ ثانیه) |
 | تاریخ | ۲۰۲۶-۱۱-۲۸ |
 
 ## نحوه دریافت آرتیفکت‌ها
 
 ```bash
-gh run download 46112428216 -D artifacts
+gh run download 46113088195 -D artifacts
 ```
 
 checksumها را با فایل دانلودشده مقایسه کنید:
