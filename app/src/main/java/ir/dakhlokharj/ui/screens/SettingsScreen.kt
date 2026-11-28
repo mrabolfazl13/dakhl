@@ -209,14 +209,14 @@ fun SettingsScreen(
                     onNavigate("privacy")
                 }
                 DkTopDivider()
-                SettingsRow("درباره برنامه", "نسخه ۱.۰.۰ • مجوز فونت", Icons.Outlined.Info) {
+                SettingsRow("درباره برنامه", "نسخه ۱.۱.۰ • مجوز فونت", Icons.Outlined.Info) {
                     onNavigate("about")
                 }
             }
 
             Spacer(Modifier.height(16.dp))
             Text(
-                "دخل‌وخرج • نسخه ۱.۰.۰ • همه داده‌ها روی این دستگاه",
+                "دخل‌وخرج • نسخه ۱.۱.۰ • همه داده‌ها روی این دستگاه",
                 style = MaterialTheme.typography.labelSmall,
                 color = colors.onSurfaceVariant,
                 modifier = Modifier.padding(horizontal = 4.dp),

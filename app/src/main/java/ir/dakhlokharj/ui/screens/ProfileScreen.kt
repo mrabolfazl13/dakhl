@@ -111,7 +111,7 @@ fun ProfileScreen(
                 DkTopDivider()
                 ProfileMenuRow("حریم خصوصی", "بدون اینترنت و بدون سرور", Icons.Outlined.PrivacyTip) { onNavigate("privacy") }
                 DkTopDivider()
-                ProfileMenuRow("درباره برنامه", "نسخه ۱.۰.۰ و مجوزها", Icons.Outlined.Info) { onNavigate("about") }
+                ProfileMenuRow("درباره برنامه", "نسخه ۱.۱.۰ و مجوزها", Icons.Outlined.Info) { onNavigate("about") }
             }
 
             Spacer(Modifier.height(16.dp))

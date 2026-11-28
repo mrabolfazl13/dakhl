@@ -49,7 +49,7 @@ fun AboutScreen(onBack: () -> Unit) {
             Text("دخل‌وخرج", style = MaterialTheme.typography.headlineMedium)
             Text("مدیریت مالی شخصی، کاملاً آفلاین", style = MaterialTheme.typography.bodySmall, color = colors.onSurfaceVariant)
             Spacer(Modifier.height(4.dp))
-            Text("نسخه ۱.۰.۰", style = MaterialTheme.typography.labelSmall, color = colors.onSurfaceVariant)
+            Text("نسخه ۱.۱.۰", style = MaterialTheme.typography.labelSmall, color = colors.onSurfaceVariant)
             Spacer(Modifier.height(20.dp))
 
             DkCard {
@@ -104,7 +104,8 @@ fun AboutScreen(onBack: () -> Unit) {
                         "• امتیاز سلامت مالی با توضیح شفاف\n" +
                         "• اقساط، بدهی، طلب، اشتراک و پس‌انداز\n" +
                         "• تقویم مالی و گزارش‌های دوره‌ای\n" +
-                        "• خروجی CSV و PDF و پشتیبان کامل",
+                        "• خروجی CSV و PDF و پشتیبان کامل\n" +
+                        "• به‌روزرسانی خودکار از فروشگاه",
                     style = MaterialTheme.typography.bodySmall,
                     color = colors.onSurfaceVariant,
                 )
