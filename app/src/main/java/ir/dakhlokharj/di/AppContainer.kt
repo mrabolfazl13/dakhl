@@ -14,6 +14,7 @@ import ir.dakhlokharj.data.repository.SavingsRepository
 import ir.dakhlokharj.data.repository.SeedData
 import ir.dakhlokharj.data.repository.SettingsRepository
 import ir.dakhlokharj.data.repository.TransactionRepository
+import ir.dakhlokharj.data.update.AppUpdateRepository
 import ir.dakhlokharj.notifications.ReminderScheduler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -55,6 +56,7 @@ class AppContainer(context: Context) {
     )
     val eventRepository = EventRepository(database.financialEventDao())
     val backupRepository = BackupRepository(appContext, database)
+    val appUpdateRepository = AppUpdateRepository(appContext)
 
     init {
         applicationScope.launch {

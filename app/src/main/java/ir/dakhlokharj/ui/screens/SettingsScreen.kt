@@ -14,6 +14,7 @@ import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.Palette
 import androidx.compose.material.icons.outlined.PrivacyTip
 import androidx.compose.material.icons.outlined.Security
+import androidx.compose.material.icons.outlined.SystemUpdate
 import androidx.compose.material.icons.outlined.Wallet
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -41,6 +42,7 @@ fun SettingsScreen(
     planning: PlanningViewModel,
     onBack: () -> Unit,
     onNavigate: (String) -> Unit,
+    onCheckUpdates: () -> Unit,
 ) {
     val settings by viewModel.settings.collectAsStateWithLifecycle()
     val accounts by planning.accounts.collectAsStateWithLifecycle()
@@ -188,6 +190,16 @@ fun SettingsScreen(
                     accounts.firstOrNull { it.id == settings.defaultAccountId }?.name ?: "انتخاب خودکار",
                     Icons.Outlined.Wallet,
                 ) { showDefaultAccount = true }
+            }
+
+            Spacer(Modifier.height(10.dp))
+            SectionHeader("به‌روزرسانی")
+            DkCard(contentPadding = PaddingValues(6.dp)) {
+                SettingsRow(
+                    "به‌روزرسانی خودکار",
+                    "بررسی نسخه جدید هنگام اجرا از طریق فروشگاه",
+                    Icons.Outlined.SystemUpdate,
+                ) { onCheckUpdates() }
             }
 
             Spacer(Modifier.height(10.dp))

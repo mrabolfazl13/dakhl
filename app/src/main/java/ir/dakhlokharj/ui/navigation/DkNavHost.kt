@@ -48,7 +48,10 @@ private val mainTabs = listOf(
 )
 
 @Composable
-fun DkNavHost(container: AppContainer) {
+fun DkNavHost(
+    container: AppContainer,
+    onCheckUpdates: () -> Unit,
+) {
     val navController = rememberNavController()
     val factory = DkViewModelFactory(container)
     val overview: OverviewViewModel = viewModel(factory = factory)
@@ -269,6 +272,7 @@ fun DkNavHost(container: AppContainer) {
                     planning = planning,
                     onBack = { navController.popBackStack() },
                     onNavigate = { route -> navController.navigate(route) },
+                    onCheckUpdates = onCheckUpdates,
                 )
             }
             composable("appearance") {

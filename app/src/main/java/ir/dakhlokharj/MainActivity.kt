@@ -39,6 +39,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import ir.dakhlokharj.di.AppContainer
 import ir.dakhlokharj.domain.model.UserSettings
 import ir.dakhlokharj.security.PinHasher
+import ir.dakhlokharj.ui.components.AppUpdateOverlay
 import ir.dakhlokharj.ui.navigation.DkNavHost
 import ir.dakhlokharj.ui.theme.DkTheme
 import kotlinx.coroutines.launch
@@ -139,7 +140,13 @@ private fun AppRoot(
             },
         )
     } else {
-        DkNavHost(container)
+        Box(modifier = Modifier.fillMaxSize()) {
+            DkNavHost(
+                container = container,
+                onCheckUpdates = { container.appUpdateRepository.check(manual = true) },
+            )
+            AppUpdateOverlay(repository = container.appUpdateRepository, activity = activity)
+        }
     }
 }
 
