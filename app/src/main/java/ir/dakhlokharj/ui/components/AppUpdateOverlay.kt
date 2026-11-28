@@ -49,7 +49,7 @@ fun AppUpdateOverlay(
                     )
                     Spacer(Modifier.height(8.dp))
                     Text(
-                        "نسخه فعلی: ${fa(BuildConfig.VERSION_NAME)}",
+                        "نسخه فعلی: ${BuildConfig.VERSION_NAME}",
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
