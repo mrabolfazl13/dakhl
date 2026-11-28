@@ -7,7 +7,7 @@
 ```
 core/        ابزارهای خالص Kotlin (پول، تقویم، قالب‌بندی)
 domain/      مدل‌ها و موتورهای مالی بدون وابستگی به اندروید
-data/        Room، DAOها، مخازن و Seed
+data/        Room، DAOها، مخازن، Seed و به‌روزرسانی فروشگاه
 backup/      رمزنگاری و پشتیبان‌گیری
 security/    هش رمز
 notifications/ WorkManager و کانال‌ها
@@ -47,6 +47,11 @@ RecurringExpense، SavingsGoal، FinancialEvent، UserSettings، BackupMetadata.
 - `DkDatabase` نسخه ۱
 - `Converters` برای `JalaliDate` (ذخیره به‌صورت epochDay) و `Money` (ذخیره ریال)
 - مخازن: Account، Category، Transaction، Budget، Debt، Installment، Recurring، Savings، Event، Settings
+
+### data/update
+- `AppUpdateRepository` — Google Play In-App Updates؛ بررسی خودکار، دریافت پس‌زمینه‌ای، نصب و
+  مسیر جایگزین باز کردن بازار/Play/مرورگر.
+- هیچ مجوز اینترنتی اضافه نمی‌کند؛ دانلود و نصب توسط فروشگاه انجام می‌شود.
 
 ### export
 - `CsvExporter` — CSV با BOM برای Excel، شامل همه تراکنش‌ها.

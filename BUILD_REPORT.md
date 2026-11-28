@@ -19,7 +19,7 @@ Workflow: `.github/workflows/android-ci.yml` — نام: Android CI
 | KSP | 2.0.21-1.0.28 |
 | compileSdk / targetSdk | 35 |
 | minSdk | 26 |
-| versionCode / versionName | 1 / 1.0.0 |
+| versionCode / versionName | 2 / 1.1.0 |
 
 ## مراحل
 
@@ -41,22 +41,22 @@ Workflow: `.github/workflows/android-ci.yml` — نام: Android CI
 
 | نام | مسیر داخلی | حجم | توضیح |
 | --- | --- | --- | --- |
-| `dakhlo-kharj-debug-apk` | `dist/dakhlo-kharj-debug.apk` | ۲۰٬۸۷۲٬۵۳۸ بایت | APK دیباگ |
-| `dakhlo-kharj-release-apk` | `dist/dakhlo-kharj-release.apk` | ۱۳٬۹۲۷٬۲۹۷ بایت | APK ریلیز |
-| `dakhlo-kharj-release-aab` | `dist/dakhlo-kharj-release.aab` | ۱۳٬۸۳۳٬۱۳۳ بایت | AAB ریلیز |
+| `dakhlo-kharj-debug-apk` | `dist/dakhlo-kharj-debug.apk` | ۲۱٬۰۳۷٬۷۱۵ بایت | APK دیباگ |
+| `dakhlo-kharj-release-apk` | `dist/dakhlo-kharj-release.apk` | ۱۴٬۰۷۶٬۱۰۳ بایت | APK ریلیز |
+| `dakhlo-kharj-release-aab` | `dist/dakhlo-kharj-release.aab` | ۱۳٬۹۷۱٬۷۴۲ بایت | AAB ریلیز |
 | `dakhlo-kharj-checksums` | `dist/SHA256SUMS.txt` | — | checksum |
 | `test-reports` | گزارش تست و lint | — | ۹۷ تست موفق، lint با ۰ خطا |
 
 ### SHA-256
 
 ```text
-d8338003bcb69a8625996bca2fa01a2d14637912ac56c1fd74d5f710b40e662a  dakhlo-kharj-debug.apk
-bb44a9a893880d4a36aff4d57e3e4a25874b157417a82577ba047e00a49fbfce  dakhlo-kharj-release.apk
-7f08e66569ddb348d6ddedcd2401ebf854d7c70237369bd0688348a94893adf7  dakhlo-kharj-release.aab
+b3361a196f25812dc0b1e3f9efa22d318b637d07ef14ae60ffea345d9f335c6a  dakhlo-kharj-debug.apk
+e2bb026f22c28009984aacf50c70cc24b93c0bc12fb05e23725caac325ce9e20  dakhlo-kharj-release.apk
+30474b3ec544b906dc633709692a82d6bac87167c5f73a9e8b6af24e3da91bbe  dakhlo-kharj-release.aab
 ```
 
 این مقادیر با `Get-FileHash` روی فایل‌های دانلودشده بازمحاسبه شدند و با `SHA256SUMS.txt` اجرای
-`45925225154` یکسان‌اند. این checksum‌ها به همان اجرا وابسته‌اند؛ چون امضای APK زمان‌دار است،
+`46112428216` یکسان‌اند. این checksum‌ها به همان اجرا وابسته‌اند؛ چون امضای APK زمان‌دار است،
 اجراهای بعدی حتی با کد یکسان checksum متفاوتی تولید می‌کنند. برای بازتولید همین فایل‌ها از همان
 Run ID استفاده کنید.
 
@@ -72,36 +72,37 @@ Run ID استفاده کنید.
 ## وضعیت manifest
 
 ```text
-package: name='ir.dakhlokharj' versionCode='1' versionName='1.0.0'
+package: name='ir.dakhlokharj' versionCode='2' versionName='1.1.0'
 sdkVersion:'26'
 targetSdkVersion:'35'
 ```
 
-مجوز `android.permission.INTERNET` وجود ندارد؛ فقط
-`POST_NOTIFICATIONS`، `USE_BIOMETRIC`، `VIBRATE` و `RECEIVE_BOOT_COMPLETED` درخواست می‌شوند.
+مجوز `android.permission.INTERNET` وجود ندارد. مجوزهای نهایی: `POST_NOTIFICATIONS`،
+`USE_BIOMETRIC`، `USE_FINGERPRINT`، `VIBRATE`، `RECEIVE_BOOT_COMPLETED`، `WAKE_LOCK`،
+`ACCESS_NETWORK_STATE` و `FOREGROUND_SERVICE` (چند مورد آخر از کتابخانه Play In-App Update
+و WorkManager می‌آیند) به‌همراه مجوز داخلی `ir.dakhlokharj.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION`.
 
 ## کیفیت کد
 
 - تست واحد: ۹۷ تست، ۰ شکست، ۰ رد‌شده.
-- lint: ۰ خطا و ۲۰ هشدار (عمدتاً وابستگی‌های قدیمی‌تر و targetSdk 35 در برابر ۳۶). این هشدارها
-  برای پایداری نسخه ۱.۰.۰ عمداً بدون ارتقای ناگهانی وابستگی‌ها باقی مانده‌اند.
+- lint: ۰ خطا و ۲۱ هشدار (عمدتاً وابستگی‌های قدیمی‌تر و targetSdk 35 در برابر ۳۶). این هشدارها
+  برای پایداری نسخه ۱.۱.۰ عمداً بدون ارتقای ناگهانی وابستگی‌ها باقی مانده‌اند.
 - Room schema در `app/schemas` نگهداری می‌شود.
 
 ## وضعیت اجرای مرجع
 
 | مورد | مقدار |
 | --- | --- |
-| Run ID | 45925225154 (مرجع آرتیفکت‌های این گزارش) |
+| Run ID | 46112428216 (مرجع آرتیفکت‌های این گزارش) |
 | شاخه | master |
-| Commit | c00575b264a5a8febd9334714e94005292a041be |
-| نتیجه | موفق (۵ دقیقه و ۴۷ ثانیه) |
-| تاریخ | ۲۰۲۶-۱۱-۲۷ |
-| اجرای مستندات بعدی | 45925975443 — موفق، بدون تغییر کد و بدون تغییر منطق |
+| Commit | 732f34e3a54b733219e67fb5f52250e1fc6f0c6e |
+| نتیجه | موفق (۴ دقیقه و ۲۹ ثانیه) |
+| تاریخ | ۲۰۲۶-۱۱-۲۸ |
 
 ## نحوه دریافت آرتیفکت‌ها
 
 ```bash
-gh run download 45925225154 -D artifacts
+gh run download 46112428216 -D artifacts
 ```
 
 checksumها را با فایل دانلودشده مقایسه کنید:

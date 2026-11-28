@@ -60,7 +60,7 @@ class AppUpdateRepository(context: Context) {
     }
 
     fun check(manual: Boolean) {
-        if (!manual && (state.value is AppUpdateState.Downloading || state.value is AppUpdateState.ReadyToInstall)) {
+        if (state.value is AppUpdateState.Downloading || state.value is AppUpdateState.ReadyToInstall) {
             return
         }
         if (!checking.compareAndSet(false, true)) return
@@ -186,7 +186,10 @@ class AppUpdateRepository(context: Context) {
             val opened = runCatching {
                 appContext.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
             }.isSuccess
-            if (opened) return true
+            if (opened) {
+                mutableState.value = AppUpdateState.Idle
+                return true
+            }
         }
         mutableState.value = AppUpdateState.Failed("فروشگاهی برای باز کردن پیدا نشد.")
         return false
